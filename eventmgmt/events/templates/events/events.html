@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Events in {{ month }}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            min-height: 100vh;
+        }
+
+        a {
+            display: inline-block;
+            margin: 20px;
+            color: #ffd54f;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #fff176;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 4px #000;
+        }
+
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            padding: 0 40px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .event-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+            border-left: 6px solid #ffcc80;
+        }
+
+        .event-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.03);
+        }
+
+        .event-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffe082;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .event-name:hover {
+            text-decoration: underline;
+        }
+
+        .event-description {
+            font-size: 15px;
+            color: #f5f5f5;
+            line-height: 1.4;
+        }
+
+        .no-events {
+            text-align: center;
+            margin: 60px auto;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            color: #fff;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .no-events svg {
+            margin-bottom: 20px;
+        }
+
+        .no-events h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #fff176;
+        }
+
+        .no-events p {
+            font-size: 16px;
+            color: #f5f5f5;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'month_list' %}">&#8592; Back to Month List</a>
+    <h2>Events in {{ month }}</h2>
+
+    {% if events %}
+        <div class="event-grid">
+            {% for event in events %}
+                <div class="event-card">
+                    <div class="event-name">{{ event.name }}</div>
+                    <div class="event-description">{{ event.description }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="no-events">
+            <svg viewBox="0 0 64 64" width="80" height="80" fill="none">
+                <circle cx="32" cy="32" r="30" fill="#ffe082" opacity="0.2"/>
+                <path d="M22 26c0-5.5 4.5-10 10-10s10 4.5 10 10" stroke="#ffca28" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="24" cy="34" r="2" fill="#ffca28"/>
+                <circle cx="40" cy="34" r="2" fill="#ffca28"/>
+                <path d="M26 42c2.5-2 9.5-2 12 0" stroke="#ffca28" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <h3>No Events Yet!</h3>
+            <p>Looks like this month is still waiting for some fun. Stay tuned!</p>
+        </div>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Event Months</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 40px;
+            margin-top: 50px;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px #333;
+        }
+
+        .month-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            z-index: 2;
+            position: relative;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .month-box {
+            background: white;
+            color: #333;
+            padding: 18px 35px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .month-box:hover {
+            background: #ff5f6d;
+            background: linear-gradient(to right, #ff9966, #ff5e62);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Geometric floating shapes */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.2;
+            z-index: 1;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .shape1 {
+            width: 150px;
+            height: 150px;
+            background: #ffffff;
+            top: 10%;
+            left: 5%;
+        }
+
+        .shape2 {
+            width: 100px;
+            height: 100px;
+            background: #ffcc70;
+            top: 75%;
+            right: 10%;
+        }
+
+        .shape3 {
+            width: 80px;
+            height: 80px;
+            background: #ff5e62;
+            top: 45%;
+            left: 70%;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>✨ Unlock the Month, Unleash the Vibe!</h1>
+
+    <div class="month-container">
+        <div class="column">
+            {% for month in months|slice:":6" %}
+                <a href="{% url 'event-list' month %}" class="month-box">{{ month }}</a>
+            {% endfor %}
+        </div>
+        <div class="column">
+            {% for month in months|slice:"6:" %}
+                <a href="{% url 'event-list' month %}" class="month-box">{{ month }}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Floating decorative shapes -->
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+    <!-- Celebration shapes -->
+<svg class="celebration-icon" style="position:absolute; top:20%; left:80%; width:60px; height:60px; opacity:0.8; z-index:1;" viewBox="0 0 64 64">
+    <path fill="#fff176" d="M32 2c-3 8-8 18-12 22s-14 9-14 9 9 5 14 9 9 14 12 22c3-8 8-18 12-22s14-9 14-9-9-5-14-9-9-14-12-22z"/>
+  </svg>
+  
+  <svg class="celebration-icon" style="position:absolute; top:65%; left:15%; width:40px; height:40px; opacity:0.8; z-index:1;" viewBox="0 0 64 64">
+    <path fill="#f06292" d="M12 32l16-16 24 24-16 16z"/>
+    <circle cx="12" cy="32" r="4" fill="#f8bbd0"/>
+  </svg>
+  
+  <svg class="celebration-icon" style="position:absolute; top:30%; left:40%; width:50px; height:50px; opacity:0.9; z-index:1;" viewBox="0 0 64 64">
+    <path fill="#4dd0e1" d="M32 6l6 18h18l-14.5 11 5.5 17-15-10.5-15 10.5 5.5-17L8 24h18z"/>
+  </svg>
+
+  <!-- Group of friends silhouette -->
+<svg style="position:absolute; bottom:0; left:5%; width:120px; height:auto; opacity:0.6; z-index:1;" viewBox="0 0 64 64">
+    <path fill="#ffffff" d="M12 40c2-5 4-9 10-9s8 4 10 9l2 7H10l2-7zM38 40c2-5 4-9 10-9s8 4 10 9l2 7H36l2-7z"/>
+    <circle cx="22" cy="30" r="4" fill="#fff"/>
+    <circle cx="50" cy="30" r="4" fill="#fff"/>
+  </svg>
+  
+  <!-- Jumping person -->
+  <svg style="position:absolute; top:10%; right:5%; width:80px; height:auto; opacity:0.7; z-index:1;" viewBox="0 0 64 64">
+    <path fill="#ffeb3b" d="M32 12l-4 8 8 4-8 4 4 8-4 4-4-4 4-8-8-4 8-4-4-8z"/>
+  </svg>
+  
+  <!-- Dancing silhouette -->
+  <svg style="position:absolute; bottom:10%; right:10%; width:100px; height:auto; opacity:0.7; z-index:1;" viewBox="0 0 64 64">
+    <path fill="#90caf9" d="M30 20c0-3 2-5 4-5s4 2 4 5-2 5-4 5-4-2-4-5zm-6 24l-4 6c2 2 6 4 10 4s8-2 10-4l-4-6c-2 2-10 2-12 0z"/>
+  </svg>
+  
+  
+</body>
+</html>
